@@ -68,6 +68,8 @@ class SystemMonitor:
         with open(self.output_filename, "a") as file:
             json.dump(snapshot, file)
             file.write("\n")
+
+        print(snapshot, end="\r")
     
     def clear_output_file(self):
         with open(self.output_filename, "w") as file:
@@ -78,7 +80,6 @@ class SystemMonitor:
         for _ in range(self.snapshot_quantity):
             snapshot =self.tracker()
             os.system('clear')
-            print(json.dumps(snapshot, indent=4), end="\r")
             self.write_snapshot(snapshot)
             time.sleep(self.interval)
 
